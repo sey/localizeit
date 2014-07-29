@@ -1,6 +1,6 @@
 # localizeit
 
-localizeit is a command line tool to generate localization files for iOS and Android projects from Google Spreadsheets.
+localizeit is a command line tool to generate localization files for iOS and Android projects from Google Spreadsheets™.
 
 ## Install
 
@@ -22,7 +22,15 @@ Create a file named localizeit.json with the following structure:
 
     python localizeit.py generate (android|ios) -s "Your i18n Google Spreadsheet" -o <output_dir>
 
+## Google Spreadsheet Format
+
+The format of the spreadsheet is currently fixed.  
+Here is the column format:  
+iOS KEY | Android KEY | iOS Comment | Android Comment | FR | EN | ES
+
 ## TODO
 
 - Add an action to create the localizeit.json file
 - Automatically detects language columns in the Google Spreadsheet
+- Handle region specific localization (en_GB, etc)
+- Handle plural forms (Don't know yet if this requires more work or not)
