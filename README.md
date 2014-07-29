@@ -24,4 +24,5 @@ Create a file named localizeit.json with the following structure:
 
 ## TODO
 
+- Add an action to create the localizeit.json file
 - Automatically detects language columns in the Google Spreadsheet
