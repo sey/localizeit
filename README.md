@@ -4,11 +4,7 @@ localizeit is a command line tool to generate localization files for iOS and And
 
 ## Install
 
-    [sudo] easy_install --upgrade localizeit
-
-or
-
-    [sudo] python setup.py install
+Clone the repository and place the localize.py script where you want.
 
 You will need to provide the localizeit.json configuration file with a client ID and client SECRET.  
 You can create an new project at this url https://console.developers.google.com/project.  
