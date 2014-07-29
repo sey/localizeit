@@ -5,7 +5,7 @@ setup(
 	version='0.9.0',
 	author='Florian Sey',
 	author_email='florian.sey@gmail.com',
-	url='',
+	url='https://github.com/sey/localizeit',
 	description='Generate localization files for iOS and Android projects from Google Spreadsheets.',
 	classifiers=[
 		'Development Status :: 3 - Alpha',

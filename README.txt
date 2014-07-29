@@ -25,3 +25,7 @@ Create a file named localizeit.json with the following structure:
 ## Basic Usage
 
     python localizeit.py generate (android|ios) -s "Your i18n Google Spreadsheet" -o <output_dir>
+
+## TODO
+
+- Automatically detects language columns in the Google Spreadsheet
