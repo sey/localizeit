@@ -22,6 +22,8 @@ Create a file named localizeit.json with the following structure:
 
     python localizeit.py generate (android|ios) -s "Your i18n Google Spreadsheet" -o <output_dir>
 
+The script uses OAuth 2 to get authorization to access to your Google Spreadsheet. This is why the first time you launch the script you will be prompted (in a browser) to authorize the app you created in the Google Console. Once you accept the script goes on. The next time you launch the script your credentials are retrieved from a file named .localizeit.storage. The credentials are automatically refreshed if they have expired. Note that you can safely delete this file and you will be prompted again to authorize the app.
+
 ## Google Spreadsheet Format
 
 The format of the spreadsheet is currently fixed.  
