@@ -13,6 +13,7 @@ import localizable
 import os
 import io
 import json
+import re
 
 REDIRECT_URI = 'http://localhost/'
 SCOPE = 'https://spreadsheets.google.com/feeds'
@@ -61,10 +62,25 @@ def get_format_string(platform):
 
 def build_entry_from_row(args, lang, row_dict):
     format_str = get_format_string(args.platform)
+    value = row_dict['values'][lang]
+    if args.platform == 'android':
+        value = value.replace("'", r"\'")
+        value = value.replace("&", "&amp;")
+
+        if '%' in value:
+            value = re.sub('%(?!\d)', '\%%', value)
+
+    if value == '':
+        value = '__MISSING__'
+
+    key = row_dict['keys'][args.platform]
+    if key == '':
+        return None
+
     entry = format_str.format( 
         comment=row_dict['comment'], 
-        key=row_dict['keys'][args.platform],
-        value=row_dict['values'][lang])
+        key=key,
+        value=value)
     return entry
 
 def parse_worksheet(args, worksheet):
@@ -81,7 +97,10 @@ def parse_worksheet(args, worksheet):
         row_dict = parse_row(args, row)
 
         for lang_key in result_dict:
-            result_dict[lang_key] += build_entry_from_row(args, lang_key, row_dict)
+            entry = build_entry_from_row(args, lang_key, row_dict)
+            if entry is None:
+                continue
+            result_dict[lang_key] += entry
         row_count += 1
         
     return result_dict
@@ -128,7 +147,7 @@ def generate(args):
         elif 'android' == platform:
             output_file.write(u'<?xml version="1.0" encoding="utf-8"?>\n<resources>\n')
             output_file.write(result[lang])
-            output_file.write(u'<resources>')
+            output_file.write(u'</resources>')
         output_file.close()
     log('DONE')
 
