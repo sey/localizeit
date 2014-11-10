@@ -55,7 +55,7 @@ def build_languages_dict(args):
 
 def get_format_string(platform):
     if 'ios' == platform:
-        return u'/* {comment} */\n"{key} = {value}";\n\n'
+        return u'/* {comment} */\n"{key}" = "{value}";\n\n'
     if 'android' == platform:
         return u'\t<string name="{key}">{value}</string>\n'
     return ''
@@ -66,6 +66,7 @@ def build_entry_from_row(args, lang, row_dict):
     if args.platform == 'android':
         value = value.replace("'", r"\'")
         value = value.replace("&", "&amp;")
+        value = value.replace("$@", "$s")
 
         if '%' in value:
             value = re.sub('%(?!\d)', '\%%', value)
